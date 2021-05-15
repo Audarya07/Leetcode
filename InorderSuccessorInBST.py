@@ -15,7 +15,7 @@
 
 class Solution:
     def inorderSuccessor(self, root, x):
-        if root .data == x.data:
+        if root.data == x.data:
             curr = root.right
             if not curr:
                 return curr
