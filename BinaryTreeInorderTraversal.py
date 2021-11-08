@@ -1,7 +1,7 @@
+# Solution 1 --> Recursive
 class Solution:
     def inorderTraversal(self, root: TreeNode) -> List[int]:
         
-        # Rcursive Solution
         def solver(root, ans):
             if root:
                 if root.left:
@@ -14,15 +14,27 @@ class Solution:
         solver(root,ans)
         return ans
 
-        # Iterative Solution
-        ans = []
+# Solution 2 --> Iterative
+class Solution:
+    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         stack = []
-        curr = root
-        while curr or stack:
-            while curr:
-                stack.append(curr)
-                curr = curr.left
-            curr = stack.pop()
-            ans.append(curr.val)
-            curr = curr.right
+        ans = []
+        node = root
+        while True:
+            if node:
+                stack.append(node)
+                node = node.left
+            else:
+                if len(stack) == 0:
+                    break
+                node = stack.pop()
+                ans.append(node.val)
+                node = node.right
         return ans
+
+
+# Iterative approach:
+# - If node not null --> put in stack and move LEFT
+# - Else
+#     - if stack is empty --> traversal done.. so break
+#     - else remove top element of the stack and append in the ans array, then move RIGHT
